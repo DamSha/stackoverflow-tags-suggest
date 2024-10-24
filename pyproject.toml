@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "StackOverflow API - prédiction de Tags"
+version = "0.1.0"
+description = "Suggestion de Tags sur les Questions StackOverflow"
+authors = ["DamSha <chauvet.damien@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
