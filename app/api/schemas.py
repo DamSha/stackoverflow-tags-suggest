@@ -5,9 +5,9 @@ class QuestionInput(BaseModel):
     title: str
     content: str
 
+
 class PredictOutput(BaseModel):
-    tags: list
-    timing: str
+    tags: list = []
 
 
 class SimpleResponse(BaseModel):

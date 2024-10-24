@@ -18,7 +18,7 @@ def root():
 
 
 @router.get('/health-check', response_model=schemas.SimpleResponse)
-async def health_check(request: Request, question: schemas.QuestionInput):
+async def health_check(request: Request):
     response = schemas.SimpleResponse(
         status="OK",
         message="Health-Check OK.")

@@ -1,12 +1,11 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from .routers import base, predict
-from .config import settings
+from app.api.routers import base, predict
+from app.api.config import settings
 
 # models.Base.metadata.create_all(bind=engine)
 description = """
-# API de suggestion de Tags sur une question de Stackoverflow.
 ## Usage
 - 🚀 POST to **/predict/tags**
     - with body/message
