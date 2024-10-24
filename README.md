@@ -26,3 +26,7 @@ https://github.com/users/DamSha/projects/4
 ## Documentation
 - Git-cliff (https://git-cliff.org/) Génération d'un changelog.md grâce aux commits
 
+## Tests
+- Utilisation de Pytest dans le dossier tests/,
+- avec Pytest-cov pour la couverture des tests,
+- et pytest-xdist pour une éxécution en parallèle

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "StackOverflow API - prédiction de Tags"
-version = "0.1.0"
+version = "0.1.1"
 description = "Suggestion de Tags sur les Questions StackOverflow"
 authors = ["DamSha <chauvet.damien@gmail.com>"]
 license = "MIT"
@@ -12,6 +12,9 @@ python = "^3.12"
 
 [tool.poetry.group.dev.dependencies]
 git-cliff = "^2.6.1"
+pytest = "^8.3.3"
+pytest-cov = "^5.0.0"
+pytest-xdist = "^3.6.1"
 
 [build-system]
 requires = ["poetry-core"]
