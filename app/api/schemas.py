@@ -3,7 +3,7 @@ from pydantic import BaseModel
 
 class QuestionInput(BaseModel):
     title: str
-    content: str
+    body: str
 
 
 class PredictOutput(BaseModel):
