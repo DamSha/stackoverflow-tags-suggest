@@ -1,0 +1,108 @@
+name: Test and Deploy app
+
+on:
+  push:
+    branches:
+      - develop
+      - main
+
+jobs:
+  run_tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [ "3.11", "3.12", "3.13" ]
+    environment:
+      name: testing
+    steps:
+      #----------------------------------------------
+      #       check-out repo and set-up python
+      #----------------------------------------------
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up python ${{ matrix.python-version }}
+        id: setup-python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      #----------------------------------------------
+      #  -----  install & configure poetry  -----
+      #----------------------------------------------
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+        with:
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+          virtualenvs-path: .venv
+          installer-parallel: true
+      #----------------------------------------------
+      #  load cached venv if cache exists
+      #----------------------------------------------
+      - name: Load cached venv
+        id: cached-poetry-dependencies
+        uses: actions/cache@v4
+        with:
+          path: .venv
+          key: venv-${{ runner.os }}-${{ matrix.python-version }}-${{ hashFiles('**/poetry.lock') }}
+      #----------------------------------------------
+      # install dependencies if cache does not exist
+      #----------------------------------------------
+      - name: Install dependencies
+        if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+        run: poetry install --no-interaction --no-root
+      #----------------------------------------------
+      # install root project, if required
+      #----------------------------------------------
+      - name: Install project
+        run: poetry install --no-interaction
+      #----------------------------------------------
+      #  run test suite
+      #----------------------------------------------
+      - name: Run tests
+        run: |
+          source .venv/bin/activate
+          pytest -n auto tests/
+#
+#  deploy:
+#    runs-on: ubuntu-latest
+#    steps:
+#      #----------------------------------------------
+#      # TODO : choose where to deploy
+#      # AWS ECS/EC2/Lambda, Heroku, Api Hoster (RapidAPI...) ?
+#      #----------------------------------------------
+# opt 1 : image Docker + HEROKU + modèle dans les artefacts
+# AWS EC2
+# AWS Api Gateway
+
+  build:
+    runs-on: ubuntu-22.04
+    needs: [run_tests]
+    environment:
+      name: production
+    steps:
+      - uses: actions/checkout@v4
+      - uses: akhileshns/heroku-deploy@v3.13.15
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
+          heroku_email: ${{secrets.HEROKU_EMAIL}}
+#      - name: deploy to ubuntu server
+#        uses: appleboy/ssh-action@master
+#        with:
+#          host: ${{secrets.HEROKU_PROD_HOST}}
+#          username: ${{secrets.HEROKU_PROD_USERNAME}}
+#          password: ${{secrets.HEROKU_PROD_PASSWORD}}
+#          script: |
+#            cd app/src
+#            git pull
+#            echo ${{secrets.HEROKU_PROD_PASSWORD}} | sudo -S systemctl restart ${{secrets.HEROKU_APP_NAME}}
+
+
+        #----------------------------------------------
+        #  Deploy to HEROKU (manual)
+        #----------------------------------------------
+        # curl https://cli-assets.heroku.com/install.sh | sh
+        # heroku login
+        # heroku git:clone -a /var/www/${{secrets.HEROKU_APP_NAME}}
+        # cd /var/www/${{secrets.HEROKU_APP_NAME}}
+        #
