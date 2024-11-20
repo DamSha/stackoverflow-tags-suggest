@@ -9,9 +9,6 @@ on:
 jobs:
   run_tests:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: [ "3.11", "3.12", "3.13" ]
     environment:
       name: testing
     steps:
@@ -20,11 +17,11 @@ jobs:
       #----------------------------------------------
       - name: Check out repository
         uses: actions/checkout@v4
-      - name: Set up python ${{ matrix.python-version }}
+      - name: Set up python 3.12.7
         id: setup-python
         uses: actions/setup-python@v5
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: 3.12.7
       #----------------------------------------------
       #  -----  install & configure poetry  -----
       #----------------------------------------------
