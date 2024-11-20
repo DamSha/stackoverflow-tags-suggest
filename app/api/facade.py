@@ -5,8 +5,8 @@ from slowapi.errors import RateLimitExceeded
 from slowapi.middleware import SlowAPIMiddleware
 from slowapi.util import get_remote_address
 
+# from app.api.config import settings
 from app.api.routers import base, predict
-from app.api.config import settings
 
 api_version = "0.1.2"
 api_description = """

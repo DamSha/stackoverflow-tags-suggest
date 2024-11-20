@@ -9,7 +9,7 @@ Création du socle technique : Python, doc, tests
 Développement et déploiement de l'API, CI/CD
 
 ### Phase 3 : Prédiction
-Mise en place du module de prédiction : modèle mlflow, ui 
+Mise en place du module de prédiction : modèle mlflow, ui
 
 ## Package manager
 - Utilisation de Poetry pour gérer les packages dans un environnement virtuel.
@@ -20,7 +20,7 @@ Mise en place du module de prédiction : modèle mlflow, ui
 - Utilisation de cz commit pour la mise en forme des commits.
 
 ## Suivi de projet
-- Utilisation de GitHub Project : 
+- Utilisation de GitHub Project :
 https://github.com/users/DamSha/projects/4
 
 ## Documentation
@@ -30,3 +30,28 @@ https://github.com/users/DamSha/projects/4
 - Utilisation de Pytest dans le dossier tests/,
 - avec Pytest-cov pour la couverture des tests,
 - et pytest-xdist pour une éxécution en parallèle
+
+
+## Git WorkFlow
+- Utilisation de Git flow
+https://les-enovateurs.com/gitflow-workflow-git-incontournableprojets-de-qualite
+![git flow](docs/git_flow.png)
+
+## Git Pre-commit
+### Installation
+- ```poetry add black flake8 isort bandit pre-commit --group dev```
+- ```pre-commit sample-config > .pre-commit-config.yaml```
+- Modifier [.pre-commit-config.yaml](.pre-commit-config.yaml)
+- Installer les pre-commit du fichier config :
+- ```pre-commit install```
+- Lancer les tests
+- ```pre-commit run -a```
+### Auto-Update régulier
+- ```pre-commit autoupdate```
+### Problème
+- Supprimer le git hooks
+- ```pre-commit clean```
+- Installer le git hooks
+- ```pre-commit install```
+- Réinstaller les hooks
+- ```pre-commit install --install-hooks```

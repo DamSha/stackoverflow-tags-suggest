@@ -1,4 +1,6 @@
-from fastapi import FastAPI, Response, status, HTTPException, Depends, APIRouter
+from fastapi import (  # Depends,; FastAPI,; HTTPException,; Response,; status,
+    APIRouter,
+)
 from starlette.requests import Request
 
 from app.api import schemas

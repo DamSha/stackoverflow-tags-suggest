@@ -1,10 +1,11 @@
 import time
 
-from fastapi import FastAPI
-from fastapi.testclient import TestClient
 import pytest
 
-from app.api import schemas
+# from fastapi import FastAPI
+from fastapi.testclient import TestClient
+
+# from app.api import schemas
 from app.api.facade import app
 
 
