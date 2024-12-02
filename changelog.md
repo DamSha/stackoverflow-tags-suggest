@@ -6,6 +6,12 @@ All notable changes to this project will be documented in this file.
 
 ### 🚀 Features
 
+- *(fastapi)* AJout de la façade de l'API
+
+## [0.1.1] - 2024-10-24
+
+### 🚀 Features
+
 - *(poetry)* Add Poetry as a package manager
 - *(git)* Ajout de git-cliff, git flow et cz commit
 
