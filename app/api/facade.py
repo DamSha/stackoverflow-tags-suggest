@@ -7,7 +7,7 @@ from slowapi.util import get_remote_address
 
 from app.api.routers import base, predict
 
-api_version = "0.1.2"
+api_version = "0.1.3"
 api_description = """
 ## Usage
 - 🚀 POST **/predict/**
