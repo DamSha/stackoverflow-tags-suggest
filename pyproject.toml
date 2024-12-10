@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "StackOverflow API - prédiction de Tags"
-version = "0.1.1"
+version = "0.1.3"
 description = "Suggestion de Tags sur les Questions StackOverflow"
 authors = ["DamSha <chauvet.damien@gmail.com>"]
 license = "MIT"
