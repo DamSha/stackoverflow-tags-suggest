@@ -4,8 +4,6 @@ import pandas as pd
 from app.suggestor.artifacts.all_tags import all_tags
 from app.suggestor.preprocessors import ARTIFACT_PATH, TextPreprocessor
 
-text_preprocessor = TextPreprocessor()
-
 
 class Suggestor:
 
@@ -14,7 +12,7 @@ class Suggestor:
                 or body is None or len(body) < 10):
             return None
         # Preprocess
-        x_preprocessed = text_preprocessor.preprocess_text(title, body)
+        x_preprocessed = TextPreprocessor().preprocess_text(title, body)
 
         # Predit les Tags
         _path = f"{ARTIFACT_PATH}/model_supervise_proba.pkl"
