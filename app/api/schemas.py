@@ -7,7 +7,7 @@ class QuestionInput(BaseModel):
 
 
 class PredictOutput(BaseModel):
-    tags: list = []
+    tags: list = [[str, float]]
 
 
 class SimpleResponse(BaseModel):

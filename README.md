@@ -48,10 +48,22 @@ https://les-enovateurs.com/gitflow-workflow-git-incontournableprojets-de-qualite
 - ```pre-commit run -a```
 ### Auto-Update régulier
 - ```pre-commit autoupdate```
-### Problème
+### Problème ?
 - Supprimer le git hooks
 - ```pre-commit clean```
 - Installer le git hooks
 - ```pre-commit install```
 - Réinstaller les hooks
 - ```pre-commit install --install-hooks```
+
+## Modèle de prédiction
+- Routes : /predict
+- type : POST
+- contenu attendu : { "title": "...", "body": "..." }
+- retourne un tableau de tags + précision : [['nom_du_tag', 0.765], ...]
+
+### Artifacts
+- [cv.pkl](app%2Fsuggestor%2Fartifacts%2Fcv.pkl) Pour la vectorisation du texte
+- [tfidf.pkl](app%2Fsuggestor%2Fartifacts%2Ftfidf.pkl) : Pour la transformation du texte
+- [model_supervise_proba.pkl](app%2Fsuggestor%2Fartifacts%2Fmodel_supervise_proba.pkl) :
+Modèle supervisé (LinearSVC) + probabilités
