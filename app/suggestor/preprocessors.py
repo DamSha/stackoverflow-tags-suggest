@@ -16,7 +16,6 @@ from spacy.lang.en import stop_words
 
 ARTIFACT_PATH = os.path.join(pathlib.Path(__file__).parent.absolute(),
                              'artifacts')
-lem_model = spacy.load("en_core_web_md", disable=['parser', 'ner'])
 
 replacements = {
     'c#': 'c_sharp', 'f#': 'f_sharp',
@@ -48,7 +47,8 @@ class TextPreprocessor:
     def __init__(self):
         self.lem_allowed_postags = ['NOUN']
         self.stop_words = stop_words.STOP_WORDS
-        self.lem_model = lem_model
+        self.lem_model = spacy.load("en_core_web_md",
+                                    disable=['parser', 'ner'])
 
     def extract_sentences_from_body_transformer(self, _df: np.array):
         _df = _df.map(lambda x: self.extract_sentences_from_body(str(x)))
