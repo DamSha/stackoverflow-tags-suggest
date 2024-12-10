@@ -1,9 +1,11 @@
 from fastapi import (  # Depends,; FastAPI,; HTTPException,; Response,; status,
     APIRouter,
 )
-from starlette.requests import Request
 
 from app.api import schemas
+
+# from starlette.requests import Request
+
 
 router = APIRouter(
     prefix="",
@@ -20,7 +22,7 @@ def root():
 
 
 @router.get('/health-check', response_model=schemas.SimpleResponse)
-async def health_check(request: Request):
+async def health_check():
     response = schemas.SimpleResponse(
         status="OK",
         message="Health-Check OK.")

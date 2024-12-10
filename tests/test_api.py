@@ -1,8 +1,6 @@
 import time
 
 import pytest
-
-# from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
 # from app.api import schemas
@@ -44,3 +42,12 @@ def test_rate_api(client):
     t2 = time.perf_counter()
     assert t2 - t1 < 1
     assert response.status_code == 429
+
+
+@pytest.mark.api
+def test_api_error(client):
+    """ Test de l'erreur de la API """
+    response = client.post(url="/predict",
+                           json={"title": "string", "body": "string"})
+    assert response.status_code == 200
+    assert response.content == b'[[]]'

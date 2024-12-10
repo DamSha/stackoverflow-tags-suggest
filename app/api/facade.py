@@ -5,14 +5,15 @@ from slowapi.errors import RateLimitExceeded
 from slowapi.middleware import SlowAPIMiddleware
 from slowapi.util import get_remote_address
 
-# from app.api.config import settings
 from app.api.routers import base, predict
 
 api_version = "0.1.2"
 api_description = """
 ## Usage
-- 🚀 POST to **/predict/tags**
-    - with body/message
+- 🚀 POST **/predict/**
+    - avec title et body
+- l'API retourne les prédictions sous forme de tableau :
+    - [['nom_du_tag', 0.76],...]
 ## Author
 - Damien Chauvet
 """
@@ -22,6 +23,7 @@ app = FastAPI(
     title="API Stackoverflow - Tags predictions",
     description=api_description,
     version=api_version,
+
 )
 
 # Add Rate Limiter
